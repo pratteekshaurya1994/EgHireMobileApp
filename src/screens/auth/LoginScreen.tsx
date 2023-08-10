@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {NavigateTo} from '../../constants';
+import {FontConfig, NavigateTo} from '../../constants';
 
 const LoginScreen = (props: any) => {
   const navigation = props.navigation;
@@ -13,6 +13,7 @@ const LoginScreen = (props: any) => {
         <Text
           style={{
             color: 'red',
+            fontFamily: FontConfig.Lato.bold,
           }}>
           Login Screen
         </Text>
