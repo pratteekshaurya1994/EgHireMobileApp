@@ -151,17 +151,7 @@ const CustomButton = (props: CustomButtonProps) => {
     <>
       {btnClass === 'primary' && type === 'normal' && (
         <LinearGradient
-          colors={
-            disabled
-              ? [
-                  Colors.borderColor,
-                  Colors.borderColor,
-                  // Colors.borderColor,
-                  // Colors.borderColor,
-                ]
-              : // : Colors.gradients[3]
-                ['#FFA220', '#65FF67']
-          }
+          colors={disabled ? ['#CACACA', '#BDBDBD'] : ['#10C4D3', '#4FE6AF']}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 1}}
           locations={[0.42, 0.67]}

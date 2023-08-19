@@ -4,9 +4,9 @@ install:
 	cd ios && pod install
 start:
 	npx react-native start --reset-cache
-andr:
+a:
 	npx react-native run-android
-ios:
+i:
 	npx react-native run-ios
 
 open-android:

@@ -2,34 +2,52 @@ import * as React from 'react';
 import {NavigateTo} from '../constants';
 import LoginScreen from '../screens/auth/LoginScreen';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import CustomDrawerComponent from '../components/CustomDrawerComponent';
-import SignupScreen from '../screens/auth/SignupScreen';
 import TabNavigator from './TabNav';
+import CustomTabDrawerComponent from '../components/CustomTabDrawerComponent';
+import CustomAuthDrawerComponent from '../components/CustomAuthDrawerComponent';
+import SignupRecruiterScreen from '../screens/auth/signup/SignupRecruiterScreen';
+import SignupJobSeekerScreen from '../screens/auth/signup/SignupJobSeekerScreen';
 
-const DrawerStack = createDrawerNavigator();
+const DrawerTabStack = createDrawerNavigator();
 
-const DrawerNavigator = () => {
+const DrawerTabNavigator = () => {
   return (
-    <DrawerStack.Navigator
-      drawerContent={props => <CustomDrawerComponent {...props} />}
-      initialRouteName={NavigateTo.LoginScreen}>
-      <DrawerStack.Screen
-        name={NavigateTo.LoginScreen}
-        component={LoginScreen}
-        options={{headerShown: false}}
-      />
-      <DrawerStack.Screen
-        name={NavigateTo.SignupScreen}
-        component={SignupScreen}
-        options={{headerShown: false}}
-      />
-      <DrawerStack.Screen
+    <DrawerTabStack.Navigator
+      drawerContent={props => <CustomTabDrawerComponent {...props} />}
+      initialRouteName={NavigateTo.TabStack}>
+      <DrawerTabStack.Screen
         name={NavigateTo.TabStack}
         component={TabNavigator}
-        options={{headerShown: false}}
+        options={{headerShown: true}}
       />
-    </DrawerStack.Navigator>
+    </DrawerTabStack.Navigator>
   );
 };
 
-export default DrawerNavigator;
+const DrawerAuthStack = createDrawerNavigator();
+
+const DrawerAuthNavigator = () => {
+  return (
+    <DrawerAuthStack.Navigator
+      drawerContent={props => <CustomAuthDrawerComponent {...props} />}
+      initialRouteName={NavigateTo.LoginScreen}>
+      <DrawerAuthStack.Screen
+        name={NavigateTo.LoginScreen}
+        component={LoginScreen}
+        options={{headerShown: true}}
+      />
+      <DrawerAuthStack.Screen
+        name={NavigateTo.SignupJobSeekerScreen}
+        component={SignupJobSeekerScreen}
+        options={{headerShown: false}}
+      />
+      <DrawerAuthStack.Screen
+        name={NavigateTo.SignupRecruiterScreen}
+        component={SignupRecruiterScreen}
+        options={{headerShown: false}}
+      />
+    </DrawerAuthStack.Navigator>
+  );
+};
+
+export {DrawerTabNavigator, DrawerAuthNavigator};

@@ -11,12 +11,12 @@ const TabNavigator = () => {
       <Tab.Screen
         name={NavigateTo.HomeScreen}
         component={HomeScreen}
-        options={{headerShown: false}}
+        options={{headerShown: true}}
       />
       <Tab.Screen
         name={NavigateTo.ProfileScreen}
         component={ProfileScreen}
-        options={{headerShown: false}}
+        options={{headerShown: true}}
       />
     </Tab.Navigator>
   );

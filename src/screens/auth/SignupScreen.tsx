@@ -8,7 +8,7 @@ const SignupScreen = (props: any) => {
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate(NavigateTo.TabStack);
+          navigation.navigate(NavigateTo.MainStack);
         }}>
         <Text style={{color: 'red'}}>Signup Screen</Text>
       </TouchableOpacity>

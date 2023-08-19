@@ -72,22 +72,33 @@ const FormikPhoneInputComponent = (props: FormikPhoneInputComponentProps) => {
 
   return (
     <>
-      {showLabel && <LabelComponent title={labelText || ''} />}
-      <LinearGradient
-        colors={[
-          'rgba(255,162,32,1)',
-          'rgba(101,255,103,0.9977240896358543)',
-          'rgba(78,235,212,1)',
-        ]}
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 1}}
-        locations={[0.3, 0.59, 0.77]}
+      {showLabel && (
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+          <LabelComponent title={labelText || ''} />
+          {(errorMessage || hasError) && (
+            <View
+              style={[
+                styles.errorContainer,
+                styles.baseErrorContainerStyle,
+                errorContainerStyle,
+              ]}>
+              <Text style={[styles.errorText, errorText]}>
+                {errorMessage || form.errors[field.name]}
+              </Text>
+            </View>
+          )}
+        </View>
+      )}
+      <View
         style={{
-          backgroundColor: 'red',
           justifyContent: 'center',
           alignItems: 'flex-start',
           borderRadius: 10,
-          // width: '90%',
         }}>
         <PhoneInput
           ref={phoneInput}
@@ -98,7 +109,7 @@ const FormikPhoneInputComponent = (props: FormikPhoneInputComponentProps) => {
             autoCapitalize: 'none',
             autoCorrect: false,
             maxLength: 10,
-            autoCompleteType: 'tel',
+            autoComplete: 'tel',
             keyboardType: 'phone-pad',
             placeholder: 'Phone number',
             ...inputProperties,
@@ -106,65 +117,27 @@ const FormikPhoneInputComponent = (props: FormikPhoneInputComponentProps) => {
           }}
           textInputStyle={[{padding: 0}, inputStyles]}
           textContainerStyle={{
-            padding: 0,
-            height: 55,
-            borderTopRightRadius: 10,
-            borderBottomRightRadius: 10,
-            backgroundColor: 'transparent',
+            backgroundColor: '#00000000',
           }}
           containerStyle={[
             {
               width: '100%',
-              // marginRight: 0,
-              borderRadius: 50,
               overflow: 'hidden',
-            },
-            // props.baseStyle,
-            // style,
-            {
-              borderWidth: 2,
-              borderColor: 'transparent',
-            },
-            {
-              shadowColor: 'black',
-              shadowOffset: {width: 0, height: 2},
-              shadowOpacity: 0.2,
-              shadowRadius: 4,
-              elevation: 4,
-            },
-            {
-              // Set linear gradient as border
-              borderColor: 'transparent',
-              borderWidth: 2,
-              borderRadius: 10,
-              overflow: 'hidden',
+              borderBottomColor: hasError ? Colors.warn : Colors.secondary,
+              borderBottomWidth: 1.5,
             },
           ]}
           onChangeText={textChangeHandler}
           autoFocus
         />
-      </LinearGradient>
-      {(errorMessage || hasError) && (
-        <View
-          style={[
-            styles.errorContainer,
-            styles.baseErrorContainerStyle,
-            errorContainerStyle,
-          ]}>
-          <Text style={[styles.errorText, errorText]}>
-            {errorMessage || form.errors[field.name]}
-          </Text>
-        </View>
-      )}
+      </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {marginVertical: 10},
-  baseErrorContainerStyle: {
-    top: 52,
-  },
+  baseErrorContainerStyle: {},
   inputWrapper: {
     marginVertical: 5,
     borderRadius: 10,
@@ -187,16 +160,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: FontConfig.Lato.regular,
   },
-  errorContainer: {
-    marginVertical: 5,
-    position: 'absolute',
-    right: 0,
-  },
+  errorContainer: {},
   errorText: {
     fontFamily: FontConfig.Lato.regular,
     color: Colors.warn,
-    fontSize: 14,
-    textTransform: 'lowercase',
+    fontSize: 13,
+    textTransform: 'capitalize',
   },
 });
 
