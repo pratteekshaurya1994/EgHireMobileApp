@@ -72,10 +72,7 @@ const CustomAuthTopBar = (props: PropsWithChildren<CustomAuthTopBarProps>) => {
           </TouchableOpacity>
         ))}
       </View>
-      <View
-        style={{
-          backgroundColor: 'red',
-        }}>
+      <View>
         <Animated.View
           style={[
             styles.indicator,
@@ -86,7 +83,6 @@ const CustomAuthTopBar = (props: PropsWithChildren<CustomAuthTopBarProps>) => {
           ]}
         />
       </View>
-      {props.children}
     </View>
   );
 };

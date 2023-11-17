@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
 import CustomAuthTopBar from '../../components/CustomAuthTopBar';
-import {CustomHooks} from '../../helpers';
+import {CommonStyles, CustomHooks} from '../../helpers';
 import {KeyboardAvoidCommonView} from '../../components/core';
 import {Colors, FontConfig} from '../../constants';
 import LoginHomeTab from './loginTabs/LoginHomeTab';
@@ -24,22 +24,19 @@ const LoginScreen = (props: any) => {
       headerTintColor: 'black',
       headerStyle: {
         backgroundColor: Colors.secondary,
-        elevation: 5,
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-        shadowColor: 'black',
       },
     });
   }, [navigation]);
 
   return (
-    <SafeAreaView style={{flex: 1}} {...panResponder.panHandlers}>
+    <SafeAreaView style={styles.container} {...panResponder.panHandlers}>
       <StatusBar backgroundColor={Colors.secondary} />
-      <KeyboardAvoidCommonView>
+      <KeyboardAvoidCommonView style={CommonStyles.topRadiusStyle}>
         <CustomAuthTopBar
           setActiveTab={setActiveTab}
           activeTab={activeTab}
           tabsData={tabs}
+          TabContainerStyle={styles.tabContainerStyle}
         />
         {activeTab === 1 && <LoginHomeTab navigation={navigation} />}
       </KeyboardAvoidCommonView>
@@ -48,33 +45,15 @@ const LoginScreen = (props: any) => {
 };
 
 const styles = StyleSheet.create({
-  formBlock: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
+  container: {flex: 1, backgroundColor: Colors.secondary},
+  keyboardAvoidCommonViewStyle: {
+    backgroundColor: 'white',
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
   },
-  formHolder: {
-    width: '85%',
-    marginHorizontal: '5%',
-  },
-  rowElements: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  forgotPasswordHolder: {
-    flex: 1,
-    alignItems: 'flex-end',
-    marginTop: 5,
-  },
-  forgotPasswordText: {
-    fontSize: 14,
-    fontFamily: FontConfig.Lato.regular,
-    color: Colors.textDark,
-  },
-  button: {
-    marginTop: 40,
-    fontFamily: FontConfig.Lato.bold,
-    height: 50,
+  tabContainerStyle: {
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
   },
 });
 

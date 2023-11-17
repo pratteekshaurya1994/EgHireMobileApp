@@ -25,5 +25,34 @@ const SignupAsRecruiterValues: SignupAsRecruiterTypes = {
   phone: '',
   address: '',
 };
+export interface SignupAsJobSeekerTypes {
+  firstName: string;
+  lastName: string;
+  companyName: string;
+  email: string;
+  phone: string;
+  address: string;
+}
 
-export {LoginDetailsInitialValues, SignupAsRecruiterValues};
+const SignupAsJobSeekerValues: SignupAsJobSeekerTypes = {
+  firstName: '',
+  lastName: '',
+  companyName: '',
+  email: '',
+  phone: '',
+  address: '',
+};
+
+export interface ForgotPasswordTypes {
+  email: string;
+}
+
+const ForgotPasswordValues: ForgotPasswordTypes = {
+  email: '',
+};
+export {
+  LoginDetailsInitialValues,
+  SignupAsRecruiterValues,
+  SignupAsJobSeekerValues,
+  ForgotPasswordValues,
+};

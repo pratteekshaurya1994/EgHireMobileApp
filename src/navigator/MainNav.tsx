@@ -12,7 +12,7 @@ const MainNavigator = () => {
       <MainStack.Screen
         name={NavigateTo.WelcomeScreen}
         component={WelcomeScreen}
-        options={{title: 'EGHire', headerShown: false}}
+        options={{title: 'EGHire', headerShown: false, headerBackVisible: true}}
       />
       <MainStack.Screen
         name={NavigateTo.AuthStack}

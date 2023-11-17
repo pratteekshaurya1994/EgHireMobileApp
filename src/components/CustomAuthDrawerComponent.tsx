@@ -13,6 +13,15 @@ const CustomAuthDrawerComponent = (props: any) => {
         <TouchableOpacity
           onPress={() => {
             // @ts-ignore
+            navigation.navigate(NavigateTo.LoginScreen);
+          }}
+          style={styles.buttonContainer}>
+          <Text style={styles.textStyle}>Home</Text>
+        </TouchableOpacity>
+        <View style={{marginTop: 30}} />
+        <TouchableOpacity
+          onPress={() => {
+            // @ts-ignore
             navigation.navigate(NavigateTo.SignupRecruiterScreen);
           }}
           style={styles.buttonContainer}>

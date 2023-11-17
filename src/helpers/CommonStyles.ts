@@ -63,6 +63,11 @@ const CommonStyles = StyleSheet.create({
   formLabelTextStyle: {
     fontFamily: FontConfig.Lato.bold,
     fontSize: 15,
+  },
+  topRadiusStyle: {
+    backgroundColor: 'white',
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
   }
 });
 export default CommonStyles;

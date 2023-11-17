@@ -2,7 +2,7 @@ install:
 	yarn install
 	bundle install
 	cd ios && pod install
-start:
+s:
 	npx react-native start --reset-cache
 a:
 	npx react-native run-android

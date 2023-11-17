@@ -34,94 +34,118 @@ const LoginHomeTab = (props: any) => {
           initialValues={LoginDetailsInitialValues}>
           {({handleSubmit, isSubmitting, isValid}) => (
             <>
-              <Field name={'email'}>
-                {(field: FieldProps) => (
-                  <FormikInputComponent
-                    trimSpaces={true}
-                    labelText="Email"
-                    inputProperties={{
-                      keyboardType: 'default',
-                      placeholder: 'Email address',
-                    }}
-                    formikField={field}
-                  />
-                )}
-              </Field>
               <View>
-                <Field name={'password'}>
+                <Field name={'email'}>
                   {(field: FieldProps) => (
-                    <View style={styles.rowElements}>
-                      <FormikInputComponent
-                        labelText="Password"
-                        trimSpaces={true}
-                        inputProperties={{
-                          secureTextEntry: isPassword,
-                          placeholder: 'Enter Password',
-                        }}
-                        formikField={field}
-                      />
-                      <TouchableOpacity
-                        style={{
-                          position: 'absolute',
-                          bottom: 20,
-                          right: 10,
-                        }}
-                        onPress={() => {
-                          setIsPassword(prevState => !prevState);
-                        }}>
-                        {isPassword ? (
-                          <>
-                            <ImageConfig.EyeOpenIcon
-                              color={'red'}
-                              style={{
-                                borderRadius: 100,
-                                marginRight: 10,
-                              }}
-                              height={'25'}
-                              width={'25'}
-                            />
-                          </>
-                        ) : (
-                          <>
-                            <ImageConfig.EyeCloseOpen
-                              color={'red'}
-                              style={{
-                                borderRadius: 100,
-                                marginRight: 10,
-                              }}
-                              height={'25'}
-                              width={'25'}
-                            />
-                          </>
-                        )}
-                      </TouchableOpacity>
-                    </View>
+                    <FormikInputComponent
+                      trimSpaces={true}
+                      labelText="Email"
+                      inputProperties={{
+                        keyboardType: 'default',
+                        placeholder: 'Email address',
+                      }}
+                      formikField={field}
+                    />
                   )}
                 </Field>
-              </View>
+                <View>
+                  <Field name={'password'}>
+                    {(field: FieldProps) => (
+                      <View style={styles.rowElements}>
+                        <FormikInputComponent
+                          labelText="Password"
+                          trimSpaces={true}
+                          inputProperties={{
+                            secureTextEntry: isPassword,
+                            placeholder: 'Enter Password',
+                          }}
+                          formikField={field}
+                        />
+                        <TouchableOpacity
+                          style={{
+                            position: 'absolute',
+                            bottom: 20,
+                            right: 10,
+                          }}
+                          onPress={() => {
+                            setIsPassword(prevState => !prevState);
+                          }}>
+                          {isPassword ? (
+                            <>
+                              <ImageConfig.EyeOpenIcon
+                                color={'red'}
+                                style={{
+                                  borderRadius: 100,
+                                  marginRight: 10,
+                                }}
+                                height={'25'}
+                                width={'25'}
+                              />
+                            </>
+                          ) : (
+                            <>
+                              <ImageConfig.EyeCloseOpen
+                                color={'red'}
+                                style={{
+                                  borderRadius: 100,
+                                  marginRight: 10,
+                                }}
+                                height={'25'}
+                                width={'25'}
+                              />
+                            </>
+                          )}
+                        </TouchableOpacity>
+                      </View>
+                    )}
+                  </Field>
+                </View>
 
-              <View style={{flex: 1, alignItems: 'flex-end'}}>
                 <TouchableOpacity
                   testID={'forgot_password_btn'}
-                  onPress={() => {}}
+                  onPress={() => {
+                    navigation.navigate(NavigateTo.OtpScreen);
+                  }}
                   style={styles.forgotPasswordHolder}>
                   <Text style={styles.forgotPasswordText}>
                     Forgot Password?
                   </Text>
                 </TouchableOpacity>
               </View>
-
-              <CustomButton
-                testID={'login_btn'}
-                isLoading={isSubmitting}
-                title={'Login'}
-                onPress={handleSubmit}
-                style={styles.button}
-                textStyle={{
-                  textTransform: 'none',
-                }}
-                disabled={!isValid}
-              />
+              <View>
+                <CustomButton
+                  testID={'login_btn'}
+                  isLoading={isSubmitting}
+                  title={'Login'}
+                  onPress={handleSubmit}
+                  style={styles.button}
+                  textStyle={{
+                    textTransform: 'none',
+                  }}
+                  disabled={!isValid}
+                />
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.openDrawer();
+                  }}>
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      textAlign: 'center',
+                      marginVertical: 10,
+                    }}>
+                    Don't have an account yet?{' '}
+                    <Text
+                      style={{
+                        color: Colors.secondary,
+                        textDecorationLine: 'underline',
+                        fontWeight: 'bold',
+                      }}>
+                      Sign up
+                    </Text>
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </>
           )}
         </Formik>
@@ -137,22 +161,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   formHolder: {
-    width: '85%',
-    marginHorizontal: '5%',
+    flex: 1,
+    margin: 10,
+    justifyContent: 'space-between',
   },
   rowElements: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   forgotPasswordHolder: {
-    flex: 1,
     alignItems: 'flex-end',
     marginTop: 5,
   },
   forgotPasswordText: {
     fontSize: 14,
     fontFamily: FontConfig.Lato.regular,
-    color: Colors.textDark,
+    color: Colors.primary,
   },
   button: {
     marginTop: 40,
